@@ -1,5 +1,4 @@
 import { Button, styled } from '@mui/material';
-import './App.css';
 
 const CustomButton = styled(Button)`
     background: red;
