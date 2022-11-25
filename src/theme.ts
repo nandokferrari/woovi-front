@@ -19,10 +19,16 @@ export const WooviTheme = createTheme({
     },
     components: {
         MuiButton: {
+            defaultProps: {
+                variant: 'contained',
+                color: 'secondary',
+                fullWidth: true,
+            },
             styleOverrides: {
                 root: {
                     fontSize: '18px',
                     fontWeight: '400',
+                    textTransform: 'none',
                 },
             },
         },
