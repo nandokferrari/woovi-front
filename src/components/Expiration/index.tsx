@@ -1,11 +1,11 @@
 import * as React from 'react';
 import * as Styled from './styled';
 
-interface IIdentifierProps {
+interface IExpirationProps {
     value?: string;
 }
 
-export const Identifier: React.FC<IIdentifierProps> = ({ value }) => {
+export const Expiration: React.FC<IExpirationProps> = ({ value }) => {
     return (
         <Styled.Container>
             <Styled.Label>Prazo de Pagamento:</Styled.Label>
