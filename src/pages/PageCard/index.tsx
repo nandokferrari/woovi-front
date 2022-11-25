@@ -17,24 +17,31 @@ const Container = styled.div`
 export const PageCard: React.FC<IPageCardProps> = () => {
     const { uuidTransaction } = useParams();
 
+    // todo control form state with rhf
+    // todo implement mask feature on input fields
+
     return (
         <Container>
             <Title value="João, pague o restante em 1x no cartão" />
             <Grid container spacing={2}>
                 <Grid xs={12}>
-                    <TextField label="Nome completo" />
+                    <TextField label="Nome completo" autoComplete="name" />
                 </Grid>
                 <Grid xs={12}>
-                    <TextField label="CPF" />
+                    <TextField label="CPF" type="tel" />
                 </Grid>
                 <Grid xs={12}>
-                    <TextField label="Número do cartão" />
+                    <TextField
+                        label="Número do cartão"
+                        autoComplete="cc-number"
+                        type="tel"
+                    />
                 </Grid>
                 <Grid xs={6}>
                     <TextField label="Vencimento" />
                 </Grid>
                 <Grid xs={6}>
-                    <TextField label="CVV" />
+                    <TextField type="tel" label="CVV" autoComplete="cc-csc" />
                 </Grid>
                 <Grid xs={12}>
                     <TextField label="Parcelas" />
