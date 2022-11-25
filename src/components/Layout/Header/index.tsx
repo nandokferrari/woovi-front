@@ -1,10 +1,14 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import { LogoHeader } from '../../Logo';
+import * as Styled from './styled';
 
 interface IHeaderProps {}
 
-const Container = styled.header``;
-
 export const Header: React.FC<IHeaderProps> = () => {
-    return <Container>header</Container>;
+    return (
+        <Styled.Container>
+            <LogoHeader />
+        </Styled.Container>
+    );
 };

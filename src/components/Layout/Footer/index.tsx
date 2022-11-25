@@ -1,10 +1,16 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import { IconShield } from '../../Icons/IconShield';
+import { LogoFooter } from '../../Logo';
+import * as Styled from './styled';
 
 interface IFooterProps {}
 
-const Container = styled.footer``;
-
 export const Footer: React.FC<IFooterProps> = () => {
-    return <Container>footer</Container>;
+    return (
+        <Styled.Container>
+            <IconShield />
+            <Styled.Text>Pagamento 100% seguro via:</Styled.Text>
+            <LogoFooter />
+        </Styled.Container>
+    );
 };
