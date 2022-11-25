@@ -5,6 +5,9 @@ export const gridUnit = 8;
 export const WooviTheme = createTheme({
     typography: {
         fontFamily: 'Nunito',
+        allVariants: {
+            color: '#4D4D4D',
+        },
     },
     palette: {
         primary: {
@@ -29,6 +32,7 @@ export const WooviTheme = createTheme({
                     fontSize: '18px',
                     fontWeight: '400',
                     textTransform: 'none',
+                    boxShadow: 'none',
                 },
             },
         },
