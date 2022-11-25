@@ -1,6 +1,5 @@
-import { withTheme } from '@mui/styles';
 import * as React from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { WooviTheme } from '../../theme';
 import { Footer } from './Footer';
 import { Header } from './Header';
@@ -11,6 +10,8 @@ interface ILayoutProps {
 
 const Container = styled('div')`
     padding: 0 ${WooviTheme.spacing(2)};
+    max-width: 500px;
+    margin: 0 auto;
 `;
 
 export const Layout: React.FC<ILayoutProps> = ({ children }) => {
