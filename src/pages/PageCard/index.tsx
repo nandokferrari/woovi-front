@@ -1,12 +1,13 @@
 import { Button, TextField } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
 import * as React from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { Expiration } from '../../components/Expiration';
 import { Identifier } from '../../components/Identifier';
 import { Summary } from '../../components/Summary';
 import { Title } from '../../components/Title';
+import { OptionContext } from '../../providers/OptionContext';
 
 interface IPageCardProps {}
 
@@ -15,14 +16,27 @@ const Container = styled.div`
 `;
 
 export const PageCard: React.FC<IPageCardProps> = () => {
+    const { selectedItem } = React.useContext(OptionContext);
     const { uuidTransaction } = useParams();
+    const navigate = useNavigate();
+
+    // redirect if there is no payment option selected
+    React.useEffect(() => {
+        if (selectedItem === null) {
+            navigate('/');
+        }
+    }, []);
 
     // todo control form state with rhf
     // todo implement mask feature on input fields
 
+    const installmentsLeftToPay = (selectedItem?.installments as number) - 1;
+
     return (
         <Container>
-            <Title value="João, pague o restante em 1x no cartão" />
+            <Title
+                value={`João, pague o restante em ${installmentsLeftToPay}x no cartão`}
+            />
             <Grid container spacing={2}>
                 <Grid xs={12}>
                     <TextField label="Nome completo" autoComplete="name" />

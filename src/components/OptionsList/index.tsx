@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { IPaymentOption } from '../../pages/PageOptions';
-import { OptionContext } from '../../providers/OptionContext';
+import { IPaymentOption, OptionContext } from '../../providers/OptionContext';
 import { OptionItem } from './OptionItem';
 import * as Styled from './styled';
 
@@ -23,7 +22,7 @@ export const OptionsList: React.FC<IOptionsListProps> = ({
                     <OptionItem
                         key={item.installments}
                         item={item}
-                        selected={item.installments === selectedItem}
+                        selected={item === selectedItem}
                     />
                 ))}
             </Styled.List>

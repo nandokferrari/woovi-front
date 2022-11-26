@@ -1,6 +1,9 @@
 import * as React from 'react';
-import { IPaymentOption } from '../../../pages/PageOptions';
-import { OptionContext } from '../../../providers/OptionContext';
+import { currency } from '../../../functions';
+import {
+    IPaymentOption,
+    OptionContext,
+} from '../../../providers/OptionContext';
 import { IconCheck } from '../../Icons/IconCheck';
 import { Flag } from './Flag';
 import * as Styled from './styled';
@@ -9,13 +12,6 @@ interface IOptionItemProps {
     selected?: boolean;
     item: IPaymentOption;
 }
-
-const currency = (value: number) => {
-    return new Intl.NumberFormat('pt-BR', {
-        style: 'currency',
-        currency: 'BRL',
-    }).format(value);
-};
 
 export const OptionItem: React.FC<IOptionItemProps> = ({
     selected = false,
@@ -26,7 +22,7 @@ export const OptionItem: React.FC<IOptionItemProps> = ({
     return (
         <Styled.Container
             selected={selected}
-            onClick={() => handleSelection(item.installments)}
+            onClick={() => handleSelection(item)}
         >
             <Styled.Values>
                 <Styled.Info>

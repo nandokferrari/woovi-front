@@ -1,6 +1,5 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { CustomCheck } from '../../components/CustomCheck';
 import { OptionsList } from '../../components/OptionsList';
 import { Title } from '../../components/Title';
 import { OptionContext } from '../../providers/OptionContext';
@@ -9,14 +8,6 @@ import { useNavigate } from 'react-router-dom';
 import { Loader } from '../../components/Loader';
 
 interface IPageOptionsProps {}
-
-export interface IPaymentOption {
-    installments: number;
-    amount: number;
-    total: number | null;
-    cashback: number;
-    banner: { title: string; message: string };
-}
 
 const Container = styled.div`
     text-align: center;
