@@ -1,5 +1,5 @@
-import { Button } from '@mui/material';
 import * as React from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { IconCopy } from '../Icons/IconCopy';
 import * as Styled from './styled';
 
@@ -8,6 +8,17 @@ interface IQrCodeRenderProps {
 }
 
 export const QrCodeRender: React.FC<IQrCodeRenderProps> = ({ value }) => {
+    const navigate = useNavigate();
+    const { uuidTransaction } = useParams();
+
+    const handleClick = () => {
+        setTimeout(() => {
+            navigate(`/card/${uuidTransaction}`);
+        }, 3000);
+    };
+
+    // todo, animation on click saying "Código copiado!"
+
     return (
         <Styled.Container>
             <Styled.Image>
@@ -16,7 +27,7 @@ export const QrCodeRender: React.FC<IQrCodeRenderProps> = ({ value }) => {
                     alt=""
                 />
             </Styled.Image>
-            <Styled.CopyButton fullWidth={false}>
+            <Styled.CopyButton fullWidth={false} onClick={handleClick}>
                 <span>Clique aqui para copiar QR CODE</span>
                 <IconCopy />
             </Styled.CopyButton>
