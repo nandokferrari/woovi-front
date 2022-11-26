@@ -51,7 +51,7 @@ export const Loader = ({
                 x="0px"
                 y="0px"
                 viewBox="0 0 70 70"
-                enable-background="new 0 0 0 0"
+                enableBackground="new 0 0 0 0"
                 xmlSpace="preserve"
             >
                 <circle
