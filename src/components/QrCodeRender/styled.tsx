@@ -23,6 +23,10 @@ export const Image = styled(withTheme(Box))`
 `;
 
 export const CopyButton = styled(Button)<ButtonProps>`
+    @media (max-width: 415px) {
+        font-size: 15px;
+    }
+
     svg {
         margin-left: 16px;
     }
