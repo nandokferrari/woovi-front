@@ -8,6 +8,7 @@ import { Identifier } from '../../components/Identifier';
 import { Summary } from '../../components/Summary';
 import { Title } from '../../components/Title';
 import { OptionContext } from '../../providers/OptionContext';
+import { Steps } from '../../components/Steps';
 
 interface IPageCardProps {}
 
@@ -65,7 +66,11 @@ export const PageCard: React.FC<IPageCardProps> = () => {
                 </Grid>
             </Grid>
             <Expiration value={'15/12/2022 - 08:17'} />
+            {(selectedItem?.installments as number) > 1 && (
+                <Steps type="card" />
+            )}
             <Summary />
+
             <Identifier value={uuidTransaction} />
         </Container>
     );

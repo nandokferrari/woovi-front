@@ -8,6 +8,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { Title } from '../../components/Title';
 import { OptionContext } from '../../providers/OptionContext';
 import { currency } from '../../functions';
+import { Steps } from '../../components/Steps';
 
 interface IPagePixProps {}
 
@@ -29,11 +30,17 @@ export const PagePix: React.FC<IPagePixProps> = () => {
 
     const amountToPay = currency(selectedItem?.amount);
 
+    const titleText =
+        (selectedItem?.installments as number) === 1
+            ? `João, pague agora o total de ${amountToPay} pelo Pix`
+            : `João, pague a entrada de ${amountToPay} pelo Pix`;
+
     return (
         <Container>
-            <Title value={`João, pague a entrada de ${amountToPay} pelo Pix`} />
+            <Title value={titleText} />
             <QrCodeRender />
             <Expiration value={'15/12/2022 - 08:17'} />
+            {(selectedItem?.installments as number) > 1 && <Steps type="pix" />}
             <Summary />
             <Identifier value={uuidTransaction} />
         </Container>
