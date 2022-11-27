@@ -1,3 +1,4 @@
+import { ButtonProps, ButtonPropsColorOverrides } from '@mui/material';
 import * as React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { IconCopy } from '../Icons/IconCopy';
@@ -7,17 +8,40 @@ interface IQrCodeRenderProps {
     value?: string;
 }
 
+interface IButtonData {
+    text: string;
+    color: ButtonProps['color'];
+}
+
+const buttonInitialState = {
+    color: 'secondary' as ButtonProps['color'],
+    text: 'Clique aqui para copiar QR CODE',
+};
+
+const buttonClickedState = {
+    color: 'primary' as ButtonProps['color'],
+    text: 'Copiado com sucesso!',
+};
+
 export const QrCodeRender: React.FC<IQrCodeRenderProps> = ({ value }) => {
     const navigate = useNavigate();
     const { uuidTransaction } = useParams();
+    const [buttonData, setButtonData] =
+        React.useState<IButtonData>(buttonInitialState);
 
     const handleClick = () => {
+        setButtonData(buttonClickedState);
+
+        setTimeout(() => {
+            setButtonData(buttonInitialState);
+        }, 2000);
+
         setTimeout(() => {
             navigate(`/card/${uuidTransaction}`);
-        }, 3000);
+        }, 4000);
     };
 
-    // todo, animation on click saying "Código copiado!"
+    // todo, show loader while loads qr code image
 
     return (
         <Styled.Container>
@@ -27,8 +51,12 @@ export const QrCodeRender: React.FC<IQrCodeRenderProps> = ({ value }) => {
                     alt=""
                 />
             </Styled.Image>
-            <Styled.CopyButton fullWidth={false} onClick={handleClick}>
-                <span>Clique aqui para copiar QR CODE</span>
+            <Styled.CopyButton
+                fullWidth={false}
+                onClick={handleClick}
+                color={buttonData.color}
+            >
+                <span>{buttonData.text}</span>
                 <IconCopy />
             </Styled.CopyButton>
         </Styled.Container>

@@ -12,6 +12,7 @@ export const WooviTheme = createTheme({
     palette: {
         primary: {
             main: '#03D69D',
+            contrastText: '#ffffff',
         },
         secondary: {
             main: '#133A6F',
