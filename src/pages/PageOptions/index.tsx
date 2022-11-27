@@ -70,11 +70,13 @@ export const PageOptions: React.FC<IPageOptionsProps> = () => {
 
     useEffect(() => {
         if (selectedItem) {
-            setShowLoader(true);
+            setTimeout(() => {
+                setShowLoader(true);
+            }, 500);
 
             setTimeout(() => {
                 navigate('/pix/2c1b951f356c4680b13ba1c9fc889c47');
-            }, 3000);
+            }, 3500);
         }
 
         return () => {
