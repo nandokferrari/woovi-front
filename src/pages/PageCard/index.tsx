@@ -18,6 +18,8 @@ import { Steps } from '../../components/Steps';
 import { OptionsPixSplitted } from '../../providers/OptionsData';
 import { currency } from '../../functions';
 import { Loader } from '../../components/Loader';
+import { useForm } from 'react-hook-form';
+import { RHFinput } from '../../components/RHF/input';
 
 interface IPageCardProps {}
 
@@ -28,6 +30,8 @@ export const PageCard: React.FC<IPageCardProps> = () => {
     const { uuidTransaction } = useParams();
     const navigate = useNavigate();
     const [showLoader, setShowLoader] = React.useState(false);
+
+    const { control, handleSubmit, watch, getValues } = useForm();
 
     // redirect if there is no payment option selected
     React.useEffect(() => {
@@ -47,12 +51,13 @@ export const PageCard: React.FC<IPageCardProps> = () => {
     const [selectedInstallment, setSelectedInstallment] = React.useState(
         installmentsLeftToPay
     );
+    const defaultValueSelect = installmentsLeftToPay;
 
-    const changeInstallment = (e: any) => {
-        const newSelected = OptionsPixSplitted[e.target.value as number];
-        setSelectedInstallment(e.target.value as number);
-        // handleSelection(newSelected);
-    };
+    React.useEffect(() => {
+        if (getValues('installments') !== undefined) {
+            setSelectedInstallment(getValues('installments'));
+        }
+    }, [watch('installments')]);
 
     const InstallmentsList = [];
 
@@ -62,6 +67,12 @@ export const PageCard: React.FC<IPageCardProps> = () => {
     }
 
     const handleClick = () => {
+        handleSubmit(onValid)();
+    };
+
+    const onValid = (data: any) => {
+        console.log(data);
+
         setShowLoader(true);
         setTimeout(() => setShowLoader(false), 3000);
     };
@@ -77,41 +88,65 @@ export const PageCard: React.FC<IPageCardProps> = () => {
                 />
                 <Grid container spacing={2}>
                     <Grid xs={12}>
-                        <TextField label="Nome completo" autoComplete="name" />
+                        <RHFinput
+                            control={control}
+                            name="name"
+                            label="Nome completo"
+                            autoComplete="name"
+                            rules={{ required: true }}
+                        />
                     </Grid>
                     <Grid xs={12}>
-                        <TextField label="CPF" type="tel" />
-                    </Grid>
-                    <Grid xs={12}>
-                        <TextField
-                            label="Número do cartão"
-                            autoComplete="cc-number"
+                        <RHFinput
+                            control={control}
+                            name="document"
+                            label="CPF"
                             type="tel"
+                            rules={{ required: true }}
+                        />
+                    </Grid>
+                    <Grid xs={12}>
+                        <RHFinput
+                            control={control}
+                            name="card-number"
+                            label="Número do cartão"
+                            type="tel"
+                            autoComplete="cc-number"
+                            rules={{ required: true }}
                         />
                     </Grid>
                     <Grid xs={6}>
-                        <TextField label="Vencimento" />
+                        <RHFinput
+                            control={control}
+                            name="expiry"
+                            label="Vencimento"
+                            rules={{ required: true }}
+                        />
                     </Grid>
                     <Grid xs={6}>
-                        <TextField
+                        <RHFinput
+                            control={control}
+                            name="cvv"
                             type="tel"
                             label="CVV"
                             autoComplete="cc-csc"
+                            rules={{ required: true }}
                         />
                     </Grid>
                     <Grid xs={12}>
-                        <TextField
+                        <RHFinput
+                            name="installments"
+                            control={control}
                             select
                             label="Parcelas"
-                            onChange={changeInstallment}
-                            value={selectedInstallment}
+                            defaultValue={defaultValueSelect || ''}
                         >
                             {InstallmentsList.map((item, index) => (
                                 <MenuItem key={item} value={index}>
                                     {item}
                                 </MenuItem>
                             ))}
-                        </TextField>
+                        </RHFinput>
                     </Grid>
                     <Grid xs={12}>
                         <Button onClick={handleClick}>Pagar</Button>
