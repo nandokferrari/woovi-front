@@ -40,9 +40,6 @@ export const PageCard: React.FC<IPageCardProps> = () => {
         }
     }, []);
 
-    // todo control form state with rhf
-    // todo implement mask feature on input fields
-
     const initialPayment = selectedItem?.amount as number;
     const totalAmount = selectedItem?.total as number;
     const balance = totalAmount - initialPayment;

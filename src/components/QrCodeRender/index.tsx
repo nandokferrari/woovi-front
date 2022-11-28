@@ -41,8 +41,6 @@ export const QrCodeRender: React.FC<IQrCodeRenderProps> = ({ value }) => {
         }, 4000);
     };
 
-    // todo, show loader while loads qr code image
-
     return (
         <Styled.Container>
             <Styled.Image>
