@@ -17,6 +17,7 @@ import { OptionContext } from '../../providers/OptionContext';
 import { Steps } from '../../components/Steps';
 import { OptionsPixSplitted } from '../../providers/OptionsData';
 import { currency } from '../../functions';
+import { Loader } from '../../components/Loader';
 
 interface IPageCardProps {}
 
@@ -26,6 +27,7 @@ export const PageCard: React.FC<IPageCardProps> = () => {
     const { selectedItem, handleSelection } = React.useContext(OptionContext);
     const { uuidTransaction } = useParams();
     const navigate = useNavigate();
+    const [showLoader, setShowLoader] = React.useState(false);
 
     // redirect if there is no payment option selected
     React.useEffect(() => {
@@ -59,62 +61,74 @@ export const PageCard: React.FC<IPageCardProps> = () => {
         InstallmentsList.push(`${i + 1}x de ${currency(pricePerInstallment)}`);
     }
 
-    return (
-        <Container>
-            <Title
-                value={`João, pague o restante em ${
-                    selectedInstallment + 1
-                }x no cartão`}
-            />
-            <Grid container spacing={2}>
-                <Grid xs={12}>
-                    <TextField label="Nome completo" autoComplete="name" />
-                </Grid>
-                <Grid xs={12}>
-                    <TextField label="CPF" type="tel" />
-                </Grid>
-                <Grid xs={12}>
-                    <TextField
-                        label="Número do cartão"
-                        autoComplete="cc-number"
-                        type="tel"
-                    />
-                </Grid>
-                <Grid xs={6}>
-                    <TextField label="Vencimento" />
-                </Grid>
-                <Grid xs={6}>
-                    <TextField type="tel" label="CVV" autoComplete="cc-csc" />
-                </Grid>
-                <Grid xs={12}>
-                    <TextField
-                        select
-                        label="Parcelas"
-                        onChange={changeInstallment}
-                        value={selectedInstallment}
-                    >
-                        {InstallmentsList.map((item, index) => (
-                            <MenuItem key={item} value={index}>
-                                {item}
-                            </MenuItem>
-                        ))}
-                    </TextField>
-                </Grid>
-                <Grid xs={12}>
-                    <Button>Pagar</Button>
-                </Grid>
-            </Grid>
-            <Expiration value={'15/12/2022 - 08:17'} />
-            {(selectedItem?.installments as number) > 1 && (
-                <Steps
-                    type="card"
-                    balance={balance}
-                    selectedInstallment={selectedInstallment}
-                />
-            )}
-            <Summary value={totalAmount} />
+    const handleClick = () => {
+        setShowLoader(true);
+        setTimeout(() => setShowLoader(false), 3000);
+    };
 
-            <Identifier value={uuidTransaction} />
-        </Container>
+    return (
+        <>
+            <Loader show={showLoader} />
+            <Container>
+                <Title
+                    value={`João, pague o restante em ${
+                        selectedInstallment + 1
+                    }x no cartão`}
+                />
+                <Grid container spacing={2}>
+                    <Grid xs={12}>
+                        <TextField label="Nome completo" autoComplete="name" />
+                    </Grid>
+                    <Grid xs={12}>
+                        <TextField label="CPF" type="tel" />
+                    </Grid>
+                    <Grid xs={12}>
+                        <TextField
+                            label="Número do cartão"
+                            autoComplete="cc-number"
+                            type="tel"
+                        />
+                    </Grid>
+                    <Grid xs={6}>
+                        <TextField label="Vencimento" />
+                    </Grid>
+                    <Grid xs={6}>
+                        <TextField
+                            type="tel"
+                            label="CVV"
+                            autoComplete="cc-csc"
+                        />
+                    </Grid>
+                    <Grid xs={12}>
+                        <TextField
+                            select
+                            label="Parcelas"
+                            onChange={changeInstallment}
+                            value={selectedInstallment}
+                        >
+                            {InstallmentsList.map((item, index) => (
+                                <MenuItem key={item} value={index}>
+                                    {item}
+                                </MenuItem>
+                            ))}
+                        </TextField>
+                    </Grid>
+                    <Grid xs={12}>
+                        <Button onClick={handleClick}>Pagar</Button>
+                    </Grid>
+                </Grid>
+                <Expiration value={'15/12/2022 - 08:17'} />
+                {(selectedItem?.installments as number) > 1 && (
+                    <Steps
+                        type="card"
+                        balance={balance}
+                        selectedInstallment={selectedInstallment}
+                    />
+                )}
+                <Summary value={totalAmount} />
+
+                <Identifier value={uuidTransaction} />
+            </Container>
+        </>
     );
 };
