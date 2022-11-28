@@ -6,30 +6,45 @@ import * as Styled from './styled';
 
 interface IStepsProps {
     type: 'pix' | 'card';
+    selectedInstallment?: number;
+    balance?: number;
 }
 
-export const Steps: React.FC<IStepsProps> = ({ type }) => {
+export const Steps: React.FC<IStepsProps> = ({
+    type,
+    selectedInstallment,
+    balance,
+}) => {
     const { selectedItem } = React.useContext(OptionContext);
+    let installmentsList = ['1ª entrada no Pix'];
+    let amount = 0;
 
-    const installmentsList = [];
-    for (let i = 0; i < (selectedItem?.installments as number); i++) {
-        let sentence = 'ª entrada no Pix';
-        if (i > 0) {
-            sentence = 'ª no cartão';
+    if (!selectedInstallment) {
+        // page pix
+        for (let i = 0; i < (selectedItem?.installments as number) - 1; i++) {
+            installmentsList.push(`${i + 2}ª no cartão`);
         }
-        installmentsList.push(`${i + 1}${sentence}`);
+        amount = selectedItem?.amount as number;
+    } else {
+        // page card
+        for (let i = 0; i < selectedInstallment + 1; i++) {
+            installmentsList.push(`${i + 2}ª no cartão`);
+        }
+        amount = (balance as number) / (selectedInstallment + 1);
     }
 
     return (
         <Styled.Container type={type}>
-            {installmentsList.map((item) => (
+            {installmentsList.map((item, index) => (
                 <Styled.Item key={item}>
                     <Styled.Bullet>
                         <IconCheck />
                     </Styled.Bullet>
                     <Styled.Label>{item}</Styled.Label>
                     <Styled.Amount>
-                        {currency(selectedItem?.amount)}
+                        {index === 0
+                            ? currency(selectedItem?.amount)
+                            : currency(amount)}
                     </Styled.Amount>
                 </Styled.Item>
             ))}
