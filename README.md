@@ -2,11 +2,15 @@
 
 This challenge is being developed as a part of the hiring process for Woovi.
 
-### Running it
+### Demo
+
+[https://nandokferrari.github.io/woovi-front/](https://nandokferrari.github.io/woovi-front/)
+
+### Running it locally
 
 `yarn dev`
 
-### Core technologies in it
+### Core technologies
 
 -   Created with Vite.
 -   TypeScript
