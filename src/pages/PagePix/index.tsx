@@ -41,7 +41,7 @@ export const PagePix: React.FC<IPagePixProps> = () => {
             <QrCodeRender />
             <Expiration value={'15/12/2022 - 08:17'} />
             {(selectedItem?.installments as number) > 1 && <Steps type="pix" />}
-            <Summary value={selectedItem?.amount as number} />
+            <Summary value={selectedItem?.total as number} />
             <Identifier value={uuidTransaction} />
         </Container>
     );
