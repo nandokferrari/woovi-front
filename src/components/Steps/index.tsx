@@ -19,7 +19,7 @@ export const Steps: React.FC<IStepsProps> = ({
     let installmentsList = ['1ª entrada no Pix'];
     let amount = 0;
 
-    if (!selectedInstallment) {
+    if (selectedInstallment === undefined) {
         // page pix
         for (let i = 0; i < (selectedItem?.installments as number) - 1; i++) {
             installmentsList.push(`${i + 2}ª no cartão`);

@@ -46,7 +46,7 @@ export const PageCard: React.FC<IPageCardProps> = () => {
         installmentsLeftToPay
     );
 
-    const changeInstallment = (e: SelectChangeEvent<number>) => {
+    const changeInstallment = (e: any) => {
         const newSelected = OptionsPixSplitted[e.target.value as number];
         setSelectedInstallment(e.target.value as number);
         // handleSelection(newSelected);
@@ -87,9 +87,9 @@ export const PageCard: React.FC<IPageCardProps> = () => {
                     <TextField type="tel" label="CVV" autoComplete="cc-csc" />
                 </Grid>
                 <Grid xs={12}>
-                    <Select
+                    <TextField
+                        select
                         label="Parcelas"
-                        fullWidth
                         onChange={changeInstallment}
                         value={selectedInstallment}
                     >
@@ -98,7 +98,7 @@ export const PageCard: React.FC<IPageCardProps> = () => {
                                 {item}
                             </MenuItem>
                         ))}
-                    </Select>
+                    </TextField>
                 </Grid>
                 <Grid xs={12}>
                     <Button>Pagar</Button>
