@@ -36,7 +36,8 @@ export const OptionItem: React.FC<IOptionItemProps> = ({
                         </Styled.Total>
                     ) : (
                         <Styled.Cashback>
-                            Ganhe <b>{item.cashback * 100}%</b> de Cashback
+                            Ganhe <b>{(item.cashback as number) * 100}%</b> de
+                            Cashback
                         </Styled.Cashback>
                     )}
                 </Styled.Info>
