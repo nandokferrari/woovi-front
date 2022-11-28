@@ -4,8 +4,8 @@ export interface IPaymentOption {
     installments: number;
     amount: number;
     total: number | null;
-    cashback: number;
-    banner: { title: string; message: string };
+    cashback?: number;
+    banner?: { title: string; message: string };
 }
 
 interface IContext {
