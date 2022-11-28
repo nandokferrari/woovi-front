@@ -11,6 +11,7 @@ const Container = styled(Typography)`
     font-size: 24px;
     font-weight: 600;
     margin-bottom: 30px;
+    text-align: center;
 `;
 
 export const Title: React.FC<ITitleProps> = ({ value }) => {
