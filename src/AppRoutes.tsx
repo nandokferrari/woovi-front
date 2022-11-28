@@ -6,7 +6,7 @@ import { PagePix } from './pages/PagePix';
 
 export const AppRoutes: React.FC = () => {
     return (
-        <BrowserRouter>
+        <BrowserRouter basename={`woovi-front/`}>
             <ScrollToTop />
             <Routes>
                 <Route index path="/" element={<PageOptions />} />
