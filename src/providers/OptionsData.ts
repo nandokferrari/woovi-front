@@ -19,7 +19,7 @@ export const OptionsPixSplitted = [
     {
         installments: 3,
         amount: 10196.66,
-        total: 30620,
+        total: 30589.98,
     },
     {
         installments: 4,
