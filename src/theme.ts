@@ -46,5 +46,11 @@ export const WooviTheme = createTheme({
                 root: {},
             },
         },
+        MuiSelect: {
+            defaultProps: {
+                variant: 'outlined',
+                fullWidth: true,
+            },
+        },
     },
 });
