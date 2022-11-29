@@ -15,10 +15,10 @@ export const Header = styled.div`
 export const Label = styled(Typography)`
     font-weight: 600;
 `;
-export const IconWrapper = styled.div<{ rotate: boolean }>`
+export const IconWrapper = styled.div<{ shouldRotate: boolean }>`
     transition: all linear 100ms;
-    ${({ rotate }) =>
-        rotate &&
+    ${({ shouldRotate }) =>
+        shouldRotate &&
         css`
             rotate: 180deg;
         `}

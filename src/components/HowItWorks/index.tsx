@@ -13,7 +13,7 @@ export const HowItWorks = () => {
         <Styled.Container onClick={handleToggle}>
             <Styled.Header>
                 <Styled.Label>Como funciona?</Styled.Label>
-                <Styled.IconWrapper rotate={show}>
+                <Styled.IconWrapper shouldRotate={show}>
                     <IconChevron />
                 </Styled.IconWrapper>
             </Styled.Header>
