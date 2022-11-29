@@ -1,7 +1,8 @@
 import { bottomNavigationActionClasses, Typography } from '@mui/material';
+import { withTheme } from '@mui/styles';
 import styled, { css } from 'styled-components';
 
-export const Container = styled.div<{ selected: boolean }>`
+export const Container = withTheme(styled.div<{ selected: boolean }>`
     padding: 22px 20px;
     border: 2px solid #e5e5e5;
     margin-top: -2px;
@@ -20,14 +21,14 @@ export const Container = styled.div<{ selected: boolean }>`
         background: #fafafa;
     }
 
-    ${({ selected }) =>
+    ${({ selected, theme }) =>
         selected &&
         css`
-            outline: 2px solid #03d69d;
+            outline: 2px solid ${theme.palette.primary.main};
             outline-offset: -2px;
             background-color: #f4fbf9;
         `}
-`;
+`);
 
 export const Values = styled.div`
     display: flex;
@@ -62,12 +63,12 @@ export const Total = styled(Typography)`
     font-size: 16px;
 `;
 
-export const Cashback = styled(Typography)`
-    color: #03d69d;
+export const Cashback = withTheme(styled(Typography)`
+    color: ${({ theme }) => theme.palette.primary.main};
     font-size: 16px;
-`;
+`);
 
-export const Radio = styled.div<{ selected: boolean }>`
+export const Radio = withTheme(styled.div<{ selected: boolean }>`
     width: 26px;
     height: 26px;
     border: 2px solid #e5e5e5;
@@ -81,14 +82,14 @@ export const Radio = styled.div<{ selected: boolean }>`
         display: none;
     }
 
-    ${({ selected }) =>
+    ${({ selected, theme }) =>
         selected &&
         css`
-            border-color: #03d69d;
-            background: #03d69d;
+            border-color: ${theme.palette.primary.main};
+            background: ${theme.palette.primary.main};
 
             svg {
                 display: block;
             }
         `}
-`;
+`);

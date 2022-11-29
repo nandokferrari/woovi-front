@@ -8,8 +8,8 @@ export const Container = styled.div`
     align-items: center;
 `;
 
-export const Image = styled(withTheme(Box))`
-    border: 1px solid #03d69d;
+export const Image = withTheme(styled(Box)`
+    border: 1px solid ${({ theme }) => theme.palette.primary.main};
     padding: 15px;
     display: inline-block;
     border-radius: 8px;
@@ -20,7 +20,7 @@ export const Image = styled(withTheme(Box))`
         width: 100%;
         max-width: 330px;
     }
-`;
+`);
 
 export const CopyButton = styled(Button)<ButtonProps>`
     @media (max-width: 415px) {
