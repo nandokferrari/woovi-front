@@ -24,3 +24,7 @@ This challenge is being developed as a part of the hiring process for Woovi.
 -   Open to use an UI library, but MUI preferable
 -   Think all edge cases
 -   Design screens according to [Figma Files](https://www.figma.com/file/hv1LgD7oNrtlmfWgKBG6PF/Woovi-Desafio-Front?node-id=0%3A1&t=x7eBEaASWPp7tkhm-0)
+
+### Layout
+
+![layout](docs/layout.png)
